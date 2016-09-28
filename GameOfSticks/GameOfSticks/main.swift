@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Game class that will create a new game when called
 class PickUpSticksGame{
     let minInitialSticks : Int = 10;
     let maxInitialSticks : Int = 100;
@@ -23,6 +24,7 @@ class PickUpSticksGame{
     var cpuSelect: Int
     var validInput = false
     
+    //dictionaries to keep track of the AI sticks
     var cpuSticks :[Int : [Int]]
     var cpuSelectedSticks : [Int : Int]
     
@@ -39,25 +41,27 @@ class PickUpSticksGame{
         
     }
     
+    //start a game
     func startGame(){
         print("Welcome to the game of sticks!")
         getInitialSticks()
         makeCPUChoices()
         validInput = false
         
+        //check to see if the game is still going
         while continueGame {
             print("\nThere are \(stickAmt!) sticks on the board")
             
             //check to see whose turn it is
             if player == 1 {
-                getUserSticks()
+                getUserSticks() //get the number of sticks the user picks
                 stickAmt = stickAmt! - userSelect!
-                player = 2
+                player = 2 //switch playsers
             }else {
-                cpuSelect = getCPUSticks()
+                cpuSelect = getCPUSticks() //get the number of sticks the computer picks
                 print("CPU picked \(cpuSelect) sticks")
                 stickAmt = stickAmt! - cpuSelect
-                player = 1
+                player = 1 //switch players
             }
             
             //check to see what the maximum number of sticks allowed is based on how many sticks are remaining
@@ -81,6 +85,7 @@ class PickUpSticksGame{
         displayLoser()
     }
     
+    //restart the game
     func restartGame(){
         validInput = false
         userSelect = nil
@@ -93,6 +98,7 @@ class PickUpSticksGame{
         startGame()
     }
     
+    //prompt the user to enter the starting number of sticks
     func getInitialSticks(){
         while !validInput{
             print("How many sticks are there on the table initially (10-100)? ")
@@ -110,12 +116,14 @@ class PickUpSticksGame{
         }
     }
     
+    //initialize the cpu stick options
     func makeCPUChoices(){
         for i in 3...stickAmt!{
             cpuSticks[i] = stickArray3
         }
     }
     
+    //prompt the user to enter the number of sticks the want to pick up
     func getUserSticks(){
         while !validInput {
             print("Player 1: How many sticks do you take (1-\(maxOptions))? ")
@@ -136,6 +144,7 @@ class PickUpSticksGame{
         
     }
     
+    //get the number of sticks 
     func getCPUSticks() -> Int {
         var cpuStickSelect : Int
         var cpuStickOptions : [Int] = cpuSticks[stickAmt!]!
