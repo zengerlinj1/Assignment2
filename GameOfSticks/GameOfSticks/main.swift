@@ -169,6 +169,7 @@ class PickUpSticksGame{
         return cpuStickSelect
     }
     
+    //add the winning stick choices back into the main directory
     func addCPUWinningChoices(){
         var newValue : [Int]
         for (key, value) in cpuSelectedSticks {
@@ -179,6 +180,7 @@ class PickUpSticksGame{
         }
     }
     
+    //display the loser
     func displayLoser(){
         print("\nThere are \(stickAmt!) stick on the board")
         if player == 1{
