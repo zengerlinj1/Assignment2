@@ -59,7 +59,8 @@ class PickUpSticksGame{
                 stickAmt = stickAmt! - cpuSelect
                 player = 1
             }
-
+            
+            //check to see what the maximum number of sticks allowed is based on how many sticks are remaining
             if stickAmt < 2 {
                 maxOptions = 1
             }else if stickAmt < 3 {
@@ -75,9 +76,6 @@ class PickUpSticksGame{
             
             //reset valid the valid input to false to prepare for the next turn
             validInput = false
-            
-            //check to see what the maximum number of sticks allowed is based on how many sticks are remaining
-            
             
         }
         displayLoser()
@@ -194,7 +192,7 @@ game1.startGame()
 while restart{
     print("\nWould you like to play again (Y/N)?")
     input = readLine(stripNewline: true)!//get the users input
-    if input! == "Y" {
+    if input! == "Y" || input! == "y" {
         game1.restartGame()
     }else{
         restart = false
